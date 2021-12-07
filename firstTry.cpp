@@ -4,6 +4,15 @@
 
 using namespace std;
 
+int getindex(vector<int> list, int value){
+	int i=0;
+	while(i<list.size()){
+		if(list[i]==value)
+			return i;
+		i++;
+	}
+	return -1;
+}
 
 int max_element(vector<int> list){
 	int i=0,max=0;
@@ -30,7 +39,7 @@ int howMany(vector<int> list, int value){
 int algoritm(vector<int> list){
 	int i=0, j=1;
 	vector<int> newList;
-	newList.resize(5);
+	newList.resize(list.size());
 	while(i<list.size()){
 		newList[i]=1;
 		i++;
@@ -38,31 +47,30 @@ int algoritm(vector<int> list){
 	while(j<list.size()){
 		i=0;
 		while(j>i){
+			printf("%d<%d\n",list[i],list[j]);
 			if(list[i]<list[j]){
 				newList[j]=max(newList[i]+1,newList[j]);
 			}
 			i++;
-
 		}
 		j++;
-		
 	}
 	i=0;
 	while(i<newList.size()){
 		printf("%d\n",newList[i]);
 		i++;
 	}
-	int value = max_element(list);
-	printf("%d %d\n",value,howMany(list, value));
-	return max_element(list);
+	int value = max_element(newList);
+	printf("%d %d\n",value,howMany(newList, value));
+	return max_element(newList);
 }
 
 
 int main(){
 	vector<int> list;
-	list.resize(5);
 	int i = 0, c;
 	while ((c = getchar()) != '\n'){
+		list.resize(i+1);
 		list[i++] = c - '0';
 		if ((c = getchar()) == '\n') // ignora o espaço
 			break;
@@ -70,3 +78,4 @@ int main(){
 	algoritm(list);
 	return 0;
 }
+
