@@ -61,8 +61,11 @@ int algoritm(vector<int> list){
 int main(){
 	vector<int> list;
 	list.resize(5);
-	for(int i=0;i<5;i++){
-		scanf("%d", &list[i]);
+	int i = 0, c;
+	while ((c = getchar()) != '\n'){
+		list[i++] = c - '0';
+		if ((c = getchar()) == '\n') // ignora o espaço
+			break;
 	}
 	algoritm(list);
 	return 0;
