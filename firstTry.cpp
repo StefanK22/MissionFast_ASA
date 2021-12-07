@@ -1,8 +1,31 @@
 #include <vector>
 #include <algorithm>
+#include <iostream>
 
 using namespace std;
 
+
+int max_element(vector<int> list){
+	int i=0,max=0;
+	while(i<list.size()){
+		if(list[i]>max){
+			max = list[i];
+		}
+		i++;
+	}
+	return max;
+}
+
+int howMany(vector<int> list, int value){
+	int i=0,total=0;
+	while(i<list.size()){
+		if(list[i]==value){
+			total++;
+		}
+		i++;
+	}
+	return total;
+}
 
 int algoritm(vector<int> list){
 	int i=0, j=1;
@@ -29,8 +52,11 @@ int algoritm(vector<int> list){
 		printf("%d\n",newList[i]);
 		i++;
 	}
-	return 0;
+	int value = max_element(list);
+	printf("%d %d\n",value,howMany(list, value));
+	return max_element(list);
 }
+
 
 int main(){
 	vector<int> list;
