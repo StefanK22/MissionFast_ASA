@@ -4,8 +4,7 @@
 
 using namespace std;
 
-int getindex(vector<int> list, int value){
-	int i=0;
+int getindex(vector<int> list, int value,int i){
 	while(i<list.size()){
 		if(list[i]==value)
 			return i;
@@ -35,6 +34,16 @@ int howMany(vector<int> list, int value){
 	}
 	return total;
 }
+
+int getNumberOfsub(vector<int> list, vector<int> len ,int value){
+	int i = 0, index, total = 0;
+	while((index = getindex(list, value, i)) != -1){
+		total = total + len[index];
+		i = index + 1;
+	}
+	return total;
+}
+
 
 int algoritmo1(vector<int> list){
 	int i=0, j=1;
