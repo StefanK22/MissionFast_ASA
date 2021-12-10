@@ -37,31 +37,30 @@ int howMany(vector<int> list, int value){
 }
 
 int algoritmo1(vector<int> list){
-	int i=0, j=1;
-	vector<int> newList;
-	newList.resize(list.size());
-	while(i<list.size()){
-		newList[i]=1;
-		i++;
-	}
-	while(j<list.size()){
-		i=0;
-		while(j>i){
-			printf("%d<%d\n",list[i],list[j]);
-			if(list[i]<list[j]){
-				newList[j]=max(newList[i]+1,newList[j]);
+	int i, j, n = list.size();
+	vector<int> newList1, newList2;
+	newList1.resize(n);
+	newList2.resize(n);
+	memset(&newList1, 1, sizeof(int));
+	memset(&newList2, 1, sizeof(int));
+	for (i = 1; i < n - 1; i++){
+		for (j = 0; j < i - 1; j++){
+			if (list[i] > list[j]){
+				if (newList1[j] + 1 > newList1[i]){
+					newList1[i] = newList[j] + 1;
+					newList2[i] = newList2[j];
+				} else if (newList1[j] + 1 == newList1[i])
+					newList2[i] += newList2[j];
 			}
-			i++;
 		}
-		j++;
 	}
-	i=0;
-	while(i<newList.size()){
-		printf("%d\n",newList[i]);
-		i++;
+	for (i = 0; i < n; i++){
+		printf("%d\n", newList1[i]);
 	}
-	int value = max_element(newList);
-	printf("%d %d\n",value,howMany(newList, value));
+	printf("próxima\n");
+	for (i = 0; i < n; i++){
+		printf("%d\n", newList2[i]);
+	}
 	return 0;
 }
 
