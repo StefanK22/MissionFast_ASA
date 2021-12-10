@@ -39,23 +39,28 @@ int algoritmo1(vector<int> list){
 	vector<int> newList1, newList2;
 	newList1.resize(n);
 	newList2.resize(n);
-	memset(&newList1, 1, sizeof(int));
-	memset(&newList2, 1, sizeof(int));
-	for (i = 1; i < n - 1; i++){
-		for (j = 0; j < i - 1; j++){
+	//memset(&newList1, 1, sizeof(int));
+	//memset(&newList2, 1, sizeof(int));
+	for(i = 0; i < n; i++){
+		newList1[i] = 1;
+		newList2[i] = 1;
+	}
+	for (i = 1; i < n ; i++){
+		for (j = 0; j < i ; j++){
 			if (list[i] > list[j]){
 				if (newList1[j] + 1 > newList1[i]){
 					newList1[i] = newList1[j] + 1;
 					newList2[i] = newList2[j];
-				} else if (newList1[j] + 1 == newList1[i])
+				} else if ((newList1[j] + 1) == newList1[i])
 					newList2[i] += newList2[j];
 			}
 		}
 	}
+	printf("list1\n");
 	for (i = 0; i < n; i++){
 		printf("%d\n", newList1[i]);
 	}
-	printf("próxima\n");
+	printf("list2\n");
 	for (i = 0; i < n; i++){
 		printf("%d\n", newList2[i]);
 	}
