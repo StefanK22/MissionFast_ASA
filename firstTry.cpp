@@ -68,8 +68,9 @@ int algoritmo1(vector<int> list){
 
 int main(){
 	vector<int> list;
-	int i = 0, c;
-	if((c = getchar()) == '1'){
+	int i = 0, c = getchar();
+	if(c  == '1'){
+		getchar();
 		while ((c = getchar()) != '\n'){
 			list.resize(i+1);
 			list[i++] = c - '0';
@@ -78,7 +79,8 @@ int main(){
 		}	
 		algoritmo1(list);
 	}
-	if((c = getchar()) == '2'){
+	if(c == '2'){
+		getchar();
 		printf("algoritmo 2");
 	}
 	return 0;
