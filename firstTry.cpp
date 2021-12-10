@@ -36,7 +36,7 @@ int howMany(vector<int> list, int value){
 	return total;
 }
 
-int algoritm(vector<int> list){
+int algoritmo1(vector<int> list){
 	int i=0, j=1;
 	vector<int> newList;
 	newList.resize(list.size());
@@ -62,20 +62,25 @@ int algoritm(vector<int> list){
 	}
 	int value = max_element(newList);
 	printf("%d %d\n",value,howMany(newList, value));
-	return max_element(newList);
+	return 0;
 }
 
 
 int main(){
 	vector<int> list;
 	int i = 0, c;
-	while ((c = getchar()) != '\n'){
-		list.resize(i+1);
-		list[i++] = c - '0';
-		if ((c = getchar()) == '\n') // ignora o espaço
-			break;
+	if((c = getchar()) == '1'){
+		while ((c = getchar()) != '\n'){
+			list.resize(i+1);
+			list[i++] = c - '0';
+			if ((c = getchar()) == '\n') // ignora o espaço
+				break;
+		}	
+		algoritmo1(list);
 	}
-	algoritm(list);
+	if((c = getchar()) == '2'){
+		printf("algoritmo 2");
+	}
 	return 0;
 }
 
