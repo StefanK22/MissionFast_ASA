@@ -4,8 +4,7 @@
 
 using namespace std;
 
-int getindex(vector<int> list, int value){
-	int i=0;
+int getindex(vector<int> list, int value,int i){
 	while(i<list.size()){
 		if(list[i]==value)
 			return i;
@@ -35,6 +34,16 @@ int howMany(vector<int> list, int value){
 	}
 	return total;
 }
+
+int getNumberOfsub(vector<int> list, vector<int> len ,int value){
+	int i = 0, index, total = 0;
+	while((index = getindex(list, value, i)) != -1){
+		total = total + len[index];
+		i = index + 1;
+	}
+	return total;
+}
+
 
 int algoritmo1(vector<int> list){
 	int i, j, n = list.size();
@@ -67,8 +76,9 @@ int algoritmo1(vector<int> list){
 
 int main(){
 	vector<int> list;
-	int i = 0, c;
-	if((c = getchar()) == '1'){
+	int i = 0, c = getchar();
+	if(c  == '1'){
+		getchar();
 		while ((c = getchar()) != '\n'){
 			list.resize(i+1);
 			list[i++] = c - '0';
@@ -77,7 +87,8 @@ int main(){
 		}	
 		algoritmo1(list);
 	}
-	if((c = getchar()) == '2'){
+	if(c == '2'){
+		getchar();
 		printf("algoritmo 2");
 	}
 	return 0;
