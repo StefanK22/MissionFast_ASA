@@ -74,15 +74,12 @@ int algoritmo1(vector<int> list){
 
 int main(){
 	vector<int> list;
-	int i = 0, c = getchar();
+	int c = getchar();
 	if(c  == '1'){
-		getchar();
-		while ((c = getchar()) != '\n'){
-			list.resize(i+1);
-			list[i++] = c - '0';
-			if ((c = getchar()) == '\n') // ignora o espaço
-				break;
-		}	
+		while (scanf("%d", &c) == 1 && getchar() != '\n'){
+			list.push_back(c);
+		}
+		list.push_back(c);
 		algoritmo1(list);
 	}
 	if(c == '2'){
