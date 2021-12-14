@@ -5,78 +5,87 @@
 using namespace std;
 
 
-int algoritmo1(vector<int> list){
-	int i, j, value = 1, numOflists = 0,n = list.size();
-	vector<int> newList1, newList2;
-	newList1.resize(n);
-	newList2.resize(n);
-	//memset(&newList1, 1, sizeof(int));
-	//memset(&newList2, 1, sizeof(int));
+int getindex(vector<int> list, int value,int i){
+	while(i < list.size()){
+		if(list[i] == value)
+			return i;
+		i++;
+	}
+	return -1;
+}
+
+
+int getNumberOfsub(vector<int> list, vector<int> len ,int value){
+	int i = 0, index, total = 0;
+	while((index = getindex(list, value, i)) != -1){
+		total = total + len[index];
+		i = index + 1;
+	}
+	return total;
+}
+
+
+int algorithm1(vector<int> list){
+	int i, j, maxLen = 1 ,n = list.size();
+	vector<int> lensList, numberOfSubs;
+	lensList.resize(n);
+	numberOfSubs.resize(n);
 	for(i = 0; i < n; i++){
-		newList1[i] = 1;
-		newList2[i] = 1;
+		lensList[i] = 1;
+		numberOfSubs[i] = 1;
 	}
 	for (i = 1; i < n ; i++){
 		for (j = 0; j < i ; j++){
 			if (list[i] > list[j]){
-				if (newList1[j] + 1 > newList1[i]){
-					newList1[i] = newList1[j] + 1;
-					if(newList1[i] > value){
-						value = newList1[i];
-						numOflists = i;
-					}
-					newList2[i] = newList2[j];
-				} else if ((newList1[j] + 1) == newList1[i])
-					newList2[i] += newList2[j];
+				if (lensList[j] + 1 > lensList[i]){
+					lensList[i] = lensList[j] + 1;
+					if(lensList[i] > maxLen)
+						maxLen = lensList[i];
+					numberOfSubs[i] = numberOfSubs[j];
+				} else if ((lensList[j] + 1) == lensList[i])
+					numberOfSubs[i] += numberOfSubs[j];
 			}
 		}
 	}
-	printf("list1\n");
-	for (i = 0; i < n; i++){
-		printf("%d\n", newList1[i]);
-	}
-	printf("list2\n");
-	for (i = 0; i < n; i++){
-		printf("%d\n", newList2[i]);
-	}
 
-	
-	printf("%d %d\n", value , newList2[numOflists]);
+	int numOflists = getNumberOfsub(lensList , numberOfSubs, maxLen);
+	printf("%d %d\n", maxLen , numOflists);
 	return 0;
 }
 
 
-int algoritmo2(vector<int> list1, vector<int> list2){
-	int i, j, total = 0;
-	int size1 = list1.size();
-	int size2 = list2.size();
-	vector<int> newList;
-	if(size1 > size2)
-		newList.resize(size1);
-	else
-		newList.resize(size2);
+int algorithm2(vector<int> list1, vector<int> list2){
+	int i, j, maxLen = 0;
+	int sizeList1 = list1.size();
+	int sizeList2 = list2.size();
+	vector<int> lensList;
 
-	for(i = 0; i < newList.size(); i++){
-		newList[i] = 0;
+	if(sizeList1 > sizeList2)
+		lensList.resize(sizeList1);
+	else
+		lensList.resize(sizeList2);
+
+	for(i = 0; i < lensList.size(); i++){
+		lensList[i] = 0;
 	}
 
-	for(j=0; i<size1; i++){
+	for(i = 0; i < sizeList1; i++){
 		int currSize = 0;
 
-		for(i=0; j<size2; j++){
+		for(j = 0; j < sizeList2; j++){
 
-			if (list1[i] == list2[j] && currSize + 1 > newList[j])
-                newList[j] = currSize + 1;
+			if (list1[i] == list2[j] && currSize + 1 > lensList[j])
+                lensList[j] = currSize + 1;
  
-            if (list1[i] > list2[j] && newList[j] > currSize){
-            	currSize = newList[j];
-            	if(currSize > total)
-            		total = currSize;
+            if (list1[i] > list2[j] && lensList[j] > currSize){
+            	currSize = lensList[j];
+            	if(currSize > maxLen)
+            		maxLen = currSize;
             }
 		}
 	}
 
-	printf("%d\n",total);
+	printf("%d\n",maxLen);
 	return 0;
 }
 
@@ -89,11 +98,21 @@ int main(){
 			list.push_back(c);
 		}
 		list.push_back(c);
-		algoritmo1(list);
+		algorithm1(list);
 	}
 	if(c == '2'){
+		vector<int> list2;
 		getchar();
-		printf("algoritmo 2");
+		while (scanf("%d", &c) == 1 && getchar() != '\n'){
+			list.push_back(c);
+		}
+		list.push_back(c);
+		while (scanf("%d", &c) == 1 && getchar() != '\n'){
+			list2.push_back(c);
+		}
+		list2.push_back(c);
+
+		algorithm2(list,list2);
 	}
 	return 0;
 }
