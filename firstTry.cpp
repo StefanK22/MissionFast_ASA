@@ -17,7 +17,7 @@ int getindex(vector<int> list, int value,int i){
 
 int getNumberOfsub(vector<int> list, vector<int> len ,int value){
 	int i = 0, index, total = 0;
-	while((index = getindex(list, value, i)) != -1){      /*O(n*n)*/
+	while((index = getindex(list, value, i)) != -1){      /*O(n^2)*/
 		total = total + len[index];
 		i = index + 1;
 	}
@@ -35,7 +35,7 @@ int algorithm1(vector<int> list){
 		numberOfSubs[i] = 1;
 	}
 	for (i = 1; i < n ; i++){         
-		for (j = 0; j < i ; j++){	/*O(n*n)*/
+		for (j = 0; j < i ; j++){	/*O(n^2)*/
 			if (list[i] > list[j]){
 				if (lensList[j] + 1 > lensList[i]){
 					lensList[i] = lensList[j] + 1;
@@ -48,7 +48,7 @@ int algorithm1(vector<int> list){
 		}
 	}
 
-	int numOflists = getNumberOfsub(lensList , numberOfSubs, maxLen); /*O(n*n)*/
+	int numOflists = getNumberOfsub(lensList , numberOfSubs, maxLen); /*O(n^2)*/
 	printf("%d %d\n", maxLen , numOflists);
 	return 0;
 }
@@ -72,7 +72,7 @@ int algorithm2(vector<int> list1, vector<int> list2){
 	for(i = 0; i < sizeList1; i++){
 		int currSize = 0;
 
-		for(j = 0; j < sizeList2; j++){        /*O(n*n)*/
+		for(j = 0; j < sizeList2; j++){        /*O(n^2)*/
 
 			if (list1[i] == list2[j] && currSize + 1 > lensList[j])
                 lensList[j] = currSize + 1;
