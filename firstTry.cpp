@@ -68,15 +68,11 @@ int algorithm2(vector<int> list1, vector<int> list2){
 	for(i = 0; i < lensList.size(); i++){     /*O(n)*/
 		lensList[i] = 0;
 	}
-
 	for(i = 0; i < sizeList1; i++){
 		int currSize = 0;
-
 		for(j = 0; j < sizeList2; j++){        /*O(n^2)*/
-
 			if (list1[i] == list2[j] && currSize + 1 > lensList[j])
                 lensList[j] = currSize + 1;
- 
             if (list1[i] > list2[j] && lensList[j] > currSize){
             	currSize = lensList[j];
             	if(currSize > maxLen)
