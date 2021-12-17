@@ -6,7 +6,7 @@ using namespace std;
 
 
 int getindex(vector<int> list, int value,int i){
-	while(i < list.size()){
+	while(i < list.size()){      /*O(n)*/
 		if(list[i] == value)
 			return i;
 		i++;
@@ -17,7 +17,7 @@ int getindex(vector<int> list, int value,int i){
 
 int getNumberOfsub(vector<int> list, vector<int> len ,int value){
 	int i = 0, index, total = 0;
-	while((index = getindex(list, value, i)) != -1){
+	while((index = getindex(list, value, i)) != -1){      /*O(n*n)*/
 		total = total + len[index];
 		i = index + 1;
 	}
@@ -30,12 +30,12 @@ int algorithm1(vector<int> list){
 	vector<int> lensList, numberOfSubs;
 	lensList.resize(n);
 	numberOfSubs.resize(n);
-	for(i = 0; i < n; i++){
+	for(i = 0; i < n; i++){     /*O(n)*/
 		lensList[i] = 1;
 		numberOfSubs[i] = 1;
 	}
-	for (i = 1; i < n ; i++){
-		for (j = 0; j < i ; j++){
+	for (i = 1; i < n ; i++){         
+		for (j = 0; j < i ; j++){	/*O(n*n)*/
 			if (list[i] > list[j]){
 				if (lensList[j] + 1 > lensList[i]){
 					lensList[i] = lensList[j] + 1;
@@ -48,7 +48,7 @@ int algorithm1(vector<int> list){
 		}
 	}
 
-	int numOflists = getNumberOfsub(lensList , numberOfSubs, maxLen);
+	int numOflists = getNumberOfsub(lensList , numberOfSubs, maxLen); /*O(n*n)*/
 	printf("%d %d\n", maxLen , numOflists);
 	return 0;
 }
@@ -65,14 +65,14 @@ int algorithm2(vector<int> list1, vector<int> list2){
 	else
 		lensList.resize(sizeList2);
 
-	for(i = 0; i < lensList.size(); i++){
+	for(i = 0; i < lensList.size(); i++){     /*O(n)*/
 		lensList[i] = 0;
 	}
 
 	for(i = 0; i < sizeList1; i++){
 		int currSize = 0;
 
-		for(j = 0; j < sizeList2; j++){
+		for(j = 0; j < sizeList2; j++){        /*O(n*n)*/
 
 			if (list1[i] == list2[j] && currSize + 1 > lensList[j])
                 lensList[j] = currSize + 1;
@@ -103,11 +103,11 @@ int main(){
 	if(c == '2'){
 		vector<int> list2;
 		getchar();
-		while (scanf("%d", &c) == 1 && getchar() != '\n'){
+		while (scanf("%d", &c) == 1 && getchar() != '\n'){      /*O(n)*/
 			list.push_back(c);
 		}
 		list.push_back(c);
-		while (scanf("%d", &c) == 1 && getchar() != '\n'){
+		while (scanf("%d", &c) == 1 && getchar() != '\n'){      /*O(n)*/
 			list2.push_back(c);
 		}
 		list2.push_back(c);
