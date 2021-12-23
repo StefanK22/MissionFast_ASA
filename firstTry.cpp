@@ -16,7 +16,7 @@ int getindex(vector<int> list, int value,int i){
 
 
 int getNumberOfsub(vector<int> list, vector<int> len ,int value){
-	int i = 0, index, total = 0;
+	int i = 0, index = 0, total = 0;
 	while((index = getindex(list, value, i)) != -1){      /*O(n^2)*/
 		total = total + len[index];
 		i = index + 1;
@@ -71,8 +71,12 @@ int algorithm2(vector<int> list1, vector<int> list2){
 	for(i = 0; i < sizeList1; i++){
 		int currSize = 0;
 		for(j = 0; j < sizeList2; j++){        /*O(n^2)*/
-			if (list1[i] == list2[j] && currSize + 1 > lensList[j])
+			if (list1[i] == list2[j] && currSize + 1 > lensList[j]){
                 lensList[j] = currSize + 1;
+				if(lensList[j] > maxLen)
+            		maxLen = lensList[j];
+			}
+ 
             if (list1[i] > list2[j] && lensList[j] > currSize){
             	currSize = lensList[j];
             	if(currSize > maxLen)
