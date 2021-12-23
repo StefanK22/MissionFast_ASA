@@ -6,7 +6,7 @@ using namespace std;
 
 
 int getindex(vector<int> list, int value,int i){
-	while(i < list.size()){      /*O(n)*/
+	while(i < (int) list.size()){      /*O(n)*/
 		if(list[i] == value)
 			return i;
 		i++;
@@ -65,7 +65,7 @@ int algorithm2(vector<int> list1, vector<int> list2){
 	else
 		lensList.resize(sizeList2);
 
-	for(i = 0; i < lensList.size(); i++){     /*O(n)*/
+	for(i = 0; i < (int) lensList.size(); i++){     /*O(n)*/
 		lensList[i] = 0;
 	}
 	for(i = 0; i < sizeList1; i++){
