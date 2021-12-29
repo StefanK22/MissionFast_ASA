@@ -158,7 +158,8 @@ int main(){
 	if(c == '2'){
 		/* Stores the elements of the second list */
 		vector<int> list2;
-		while (scanf("%d", &c) == 1 && getchar() != '\n'){
+		getchar();
+		while (scanf("%d", &c) == 1 && getchar() != '\n'){ 
 			list.push_back(c);
 		}
 		list.push_back(c);
@@ -167,7 +168,7 @@ int main(){
 		}
 		list2.push_back(c);
 
-		algorithm2(list,list2);
+		algorithm2(list, list2);
 	}
 	return 0;
 }
