@@ -1,0 +1,13 @@
+vector<int> remove_equals(vector<int> list){
+	int len = list.size();
+	int i = 1;
+	while (i < len){
+		if (list[i] == list[i - 1]){
+			list.erase(list.begin() + i);
+			len--;
+		}
+		else
+			i++;
+	}
+	return list;
+}
